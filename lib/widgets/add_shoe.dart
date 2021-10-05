@@ -27,7 +27,7 @@ class AddShoe extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       actionsAlignment: MainAxisAlignment.center,
-      content: Container(
+      content: SizedBox(
         height: 300,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

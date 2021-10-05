@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import '../models/shoe.dart';
+import 'edit_shoe.dart';
 
 class ShoeWidget extends StatelessWidget {
   final Shoe shoe;
+  final Function editingHandler;
 
-  const ShoeWidget(this.shoe);
+  const ShoeWidget(this.shoe, this.editingHandler);
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,13 @@ class ShoeWidget extends StatelessWidget {
                         child: Icon(
                           Icons.edit,
                         ),
-                        onPressed: () => print('pressed'),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return EditShoe(editShoe: editingHandler, shoe: shoe);
+                              });
+                        },
                       ),
                     ],
                   ),

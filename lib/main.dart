@@ -66,6 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _updateShoe(Shoe updatedShoe) {
+    setState(() {
+      _shoeMap.update(updatedShoe.id, (value) => updatedShoe);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('iShoes'),
         centerTitle: true,
       ),
-      body: ShoeList(shoeList: _shoeMap.values),
+      body: ShoeList(shoeList: _shoeMap.values, editingHandler: _updateShoe),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             showDialog(

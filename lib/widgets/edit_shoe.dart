@@ -58,7 +58,7 @@ class EditShoe extends StatelessWidget {
               controller: priceController,
             ),
             ElevatedButton(
-              child: Text('Inserir calçado'),
+              child: Text('Editar calçado'),
               onPressed: () {
                 editShoe(Shoe(
                     id: shoe.id,
@@ -66,6 +66,7 @@ class EditShoe extends StatelessWidget {
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),
                     price: double.parse(priceController.text)));
+                    Navigator.of(context).pop();
               },
             )
           ],

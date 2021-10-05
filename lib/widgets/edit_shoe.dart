@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import '../models/shoe.dart';
 
 class EditShoe extends StatelessWidget {
-  EditShoe({Key? key, required this.editShoe, required this.shoe}) : super(key: key) {
+  EditShoe({Key? key, required this.editShoe, required this.shoe})
+      : super(key: key) {
     loadShoe();
-  } 
+  }
 
   final modelNameController = TextEditingController();
   final brandNameController = TextEditingController();
@@ -40,22 +41,26 @@ class EditShoe extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextField(
-              decoration: InputDecoration(),
+              decoration: InputDecoration(hintText: "Nome do produto", counterText: ''),
               controller: modelNameController,
+              maxLength: 25,
             ),
             TextField(
-              decoration: InputDecoration(hintText: 'Marca do produto'),
+              decoration: InputDecoration(hintText: 'Marca do produto', counterText: ''),
               controller: brandNameController,
+              maxLength: 25,
             ),
             TextField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(hintText: 'Tamanho'),
+              decoration: InputDecoration(hintText: 'Tamanho', counterText: ''),
               controller: sizeController,
+              maxLength: 2,
             ),
             TextField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(hintText: 'Preço'),
+              decoration: InputDecoration(hintText: 'Preço', counterText: ''),
               controller: priceController,
+              maxLength: 9,
             ),
             ElevatedButton(
               child: Text('Editar calçado'),
@@ -66,7 +71,7 @@ class EditShoe extends StatelessWidget {
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),
                     price: double.parse(priceController.text)));
-                    Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             )
           ],

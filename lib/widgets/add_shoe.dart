@@ -33,22 +33,26 @@ class AddShoe extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextField(
-              decoration: InputDecoration(hintText: "Nome do produto"),
+              decoration: InputDecoration(hintText: "Nome do produto", counterText: ''),
               controller: modelNameController,
+              maxLength: 25,
             ),
             TextField(
-              decoration: InputDecoration(hintText: 'Marca do produto'),
+              decoration: InputDecoration(hintText: 'Marca do produto', counterText: ''),
               controller: brandNameController,
+              maxLength: 25,
             ),
             TextField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(hintText: 'Tamanho'),
+              decoration: InputDecoration(hintText: 'Tamanho', counterText: ''),
               controller: sizeController,
+              maxLength: 2,
             ),
             TextField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(hintText: 'Preço'),
+              decoration: InputDecoration(hintText: 'Preço', counterText: ''),
               controller: priceController,
+              maxLength: 9,
             ),
             ElevatedButton(
               child: Text('Inserir calçado'),
@@ -59,10 +63,10 @@ class AddShoe extends StatelessWidget {
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),
                     price: double.parse(priceController.text)));
-                    modelNameController.clear();
-                    brandNameController.clear();
-                    sizeController.clear();
-                    priceController.clear();
+                modelNameController.clear();
+                brandNameController.clear();
+                sizeController.clear();
+                priceController.clear();
               },
             )
           ],

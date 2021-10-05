@@ -5,7 +5,7 @@ import '../models/shoe.dart';
 class ShoeList extends StatelessWidget {
    const ShoeList({ Key? key, required this.shoeList}) : super(key: key);
 
-  final List<Shoe> shoeList;
+  final Iterable<Shoe> shoeList;
   
 
   @override
@@ -13,7 +13,7 @@ class ShoeList extends StatelessWidget {
     return ListView.builder(
           itemCount: shoeList.length,
           itemBuilder: (ctx, index) {
-            return ShoeWidget(shoeList[index]);
+            return ShoeWidget(shoeList.elementAt(index));
           });
   }
 }

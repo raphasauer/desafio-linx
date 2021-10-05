@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'iShoe',
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
@@ -30,35 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Map<int, Shoe> _shoeMap = {
-    1: Shoe(
-        id: 1,
-        modelName: 'Running shoes',
-        brand: 'Adidas',
-        size: 40,
-        price: 179.99),
-    2: Shoe(
-        id: 2,
-        modelName: 'Outdoor shoes',
-        brand: 'Timberland',
-        size: 38,
-        price: 249.99),
-  };
-
-  final List<Shoe> _shoeList = [
-    Shoe(
-        id: 1,
-        modelName: 'Running shoes',
-        brand: 'Adidas',
-        size: 40,
-        price: 179.99),
-    Shoe(
-        id: 2,
-        modelName: 'Outdoor shoes',
-        brand: 'Timberland',
-        size: 38,
-        price: 249.99),
-  ];
+  final Map<int, Shoe> _shoeMap = {};
 
   void _addShoe(Shoe newShoe) {
     setState(() {

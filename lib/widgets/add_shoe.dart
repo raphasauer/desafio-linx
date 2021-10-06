@@ -6,8 +6,10 @@ import '../models/shoe.dart';
 class AddShoe extends StatelessWidget {
   AddShoe({Key? key, required this.addNewShoe}) : super(key: key);
 
+  final idController = TextEditingController();
   final modelNameController = TextEditingController();
   final brandNameController = TextEditingController();
+  final stockController = TextEditingController();
   final sizeController = TextEditingController();
   final priceController = TextEditingController();
 
@@ -28,19 +30,34 @@ class AddShoe extends StatelessWidget {
       ),
       actionsAlignment: MainAxisAlignment.center,
       content: SizedBox(
-        height: 300,
+        height: 340,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextField(
-              decoration: InputDecoration(hintText: "Nome do produto", counterText: ''),
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  hintText: "Código de referência", counterText: ''),
+              controller: idController,
+              maxLength: 25,
+            ),
+            TextField(
+              decoration:
+                  InputDecoration(hintText: "Nome do produto", counterText: ''),
               controller: modelNameController,
               maxLength: 25,
             ),
             TextField(
-              decoration: InputDecoration(hintText: 'Marca do produto', counterText: ''),
+              decoration: InputDecoration(
+                  hintText: 'Marca do produto', counterText: ''),
               controller: brandNameController,
               maxLength: 25,
+            ),
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(hintText: 'Estoque', counterText: ''),
+              controller: stockController,
+              maxLength: 3,
             ),
             TextField(
               keyboardType: TextInputType.number,
@@ -58,15 +75,13 @@ class AddShoe extends StatelessWidget {
               child: Text('Inserir calçado'),
               onPressed: () {
                 addNewShoe(Shoe(
-                    id: DateTime.now().millisecondsSinceEpoch,
+                    id: int.parse(idController.text),
+                    stock: int.parse(stockController.text),
                     modelName: modelNameController.text,
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),
                     price: double.parse(priceController.text)));
-                modelNameController.clear();
-                brandNameController.clear();
-                sizeController.clear();
-                priceController.clear();
+                    Navigator.of(context).pop();
               },
             )
           ],

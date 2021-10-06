@@ -67,6 +67,7 @@ class EditShoe extends StatelessWidget {
               onPressed: () {
                 editShoe(Shoe(
                     id: shoe.id,
+                    stock: 20,
                     modelName: modelNameController.text,
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),

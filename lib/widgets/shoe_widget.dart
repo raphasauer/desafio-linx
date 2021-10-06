@@ -14,7 +14,7 @@ class ShoeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.all(2.5),
-        height: 110,
+        height: 130,
         child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -38,6 +38,10 @@ class ShoeWidget extends StatelessWidget {
                           color: Colors.purple,
                         ),
                       ),
+                      Text('Código Ref. ${shoe.id}',
+                          style: TextStyle(color: Colors.purple)),
+                      Text('Estoque. ${shoe.stock}',
+                          style: TextStyle(color: Colors.purple)),
                       Text('Tamanho: ${shoe.size}',
                           style: TextStyle(color: Colors.purple, fontSize: 16)),
                       Text('R\$ ${shoe.price}',
@@ -69,7 +73,8 @@ class ShoeWidget extends StatelessWidget {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return EditShoe(editShoe: editingHandler, shoe: shoe);
+                                return EditShoe(
+                                    editShoe: editingHandler, shoe: shoe);
                               });
                         },
                       ),

@@ -13,6 +13,7 @@ class EditShoe extends StatelessWidget {
   final brandNameController = TextEditingController();
   final sizeController = TextEditingController();
   final priceController = TextEditingController();
+  final stockController = TextEditingController();
 
   final Function editShoe;
   final Shoe shoe;
@@ -22,6 +23,7 @@ class EditShoe extends StatelessWidget {
     brandNameController.text = shoe.brand;
     sizeController.text = shoe.size.toString();
     priceController.text = shoe.price.toString();
+    stockController.text = shoe.stock.toString();
   }
 
   @override
@@ -41,14 +43,22 @@ class EditShoe extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextField(
-              decoration: InputDecoration(hintText: "Nome do produto", counterText: ''),
+              decoration:
+                  InputDecoration(hintText: "Nome do produto", counterText: ''),
               controller: modelNameController,
               maxLength: 25,
             ),
             TextField(
-              decoration: InputDecoration(hintText: 'Marca do produto', counterText: ''),
+              decoration: InputDecoration(
+                  hintText: 'Marca do produto', counterText: ''),
               controller: brandNameController,
               maxLength: 25,
+            ),
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(hintText: 'Estoque', counterText: ''),
+              controller: stockController,
+              maxLength: 3,
             ),
             TextField(
               keyboardType: TextInputType.number,
@@ -67,7 +77,7 @@ class EditShoe extends StatelessWidget {
               onPressed: () {
                 editShoe(Shoe(
                     id: shoe.id,
-                    stock: 20,
+                    stock: int.parse(stockController.text),
                     modelName: modelNameController.text,
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),

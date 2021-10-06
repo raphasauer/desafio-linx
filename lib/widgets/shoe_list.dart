@@ -43,7 +43,7 @@ class ShoeList extends StatelessWidget {
                     }
                   },
                   background: Container(color: Colors.red),
-                  child: ShoeWidget(snapshot.data![index], editingHandler),
+                  child: ShoeWidget(snapshot.data![index], _updateShoeService),
                 );
               });
         } else if (snapshot.hasError) {
@@ -54,6 +54,14 @@ class ShoeList extends StatelessWidget {
         return const CircularProgressIndicator();
       },
     );
+  }
+
+  Future _updateShoeService(Shoe updatedShoe) async {
+    var httpRequestStatus = await updateShoe(updatedShoe);
+    if (httpRequestStatus == HttpRequestStatus.done) {
+      print(httpRequestStatus.toString());
+      reloadHandler();
+    }
   }
 }
 
@@ -101,4 +109,23 @@ Future deleteShoe(int id) async {
   return httpRequestStatus;
 }
 
-
+Future updateShoe(Shoe updatedShoe) async {
+  var httpRequestStatus = HttpRequestStatus.notDone;
+  final response = await http.put(_shoesUrl,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'id': updatedShoe.id,
+        'modelname': updatedShoe.modelName,
+        'brand': updatedShoe.brand,
+        'stock': updatedShoe.stock,
+        'size': updatedShoe.size,
+        'price': updatedShoe.price
+      }));
+  if (response.statusCode == 200) {
+    print(response.body.toString());
+    httpRequestStatus = HttpRequestStatus.done;
+  } else {
+    httpRequestStatus = HttpRequestStatus.done;
+  }
+  return httpRequestStatus;
+}

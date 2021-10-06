@@ -24,7 +24,7 @@ List<Shoe> createShoeList(List data) {
     String brand = data[i]["brand"];
     int stock = data[i]["stock"];
     int size = data[i]["size"];
-    double price = data[i]["price"];
+    double price = double.parse(data[i]["price"].toString());
     Shoe newShoe = Shoe(
         id: id,
         modelName: modelName,
@@ -77,4 +77,32 @@ Future updateShoeService(Shoe updatedShoe, Function updatePage) async {
   if (httpRequestStatus == HttpRequestStatus.done) {
     updatePage();
   }
+}
+
+void addShoeService(Shoe newShoe, Function updatePage) async {
+  var httpRequestStatus = await createShoe(newShoe);
+  if (httpRequestStatus == HttpRequestStatus.done) {
+    updatePage();
+  }
+}
+
+Future createShoe(Shoe newShoe) async {
+  var httpRequestStatus = HttpRequestStatus.notDone;
+  final response = await http.post(_shoesUrl,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'id': newShoe.id,
+        'modelname': newShoe.modelName,
+        'brand': newShoe.brand,
+        'stock': newShoe.stock,
+        'size': newShoe.size,
+        'price': newShoe.price
+      }));
+  if (response.statusCode == 200) {
+    httpRequestStatus = HttpRequestStatus.done;
+  } else {
+    httpRequestStatus = HttpRequestStatus.error;
+  }
+
+  return httpRequestStatus;
 }

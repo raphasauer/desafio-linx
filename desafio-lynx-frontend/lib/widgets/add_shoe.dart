@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../models/shoe.dart';
 
 class AddShoe extends StatelessWidget {
-  AddShoe({Key? key, required this.addNewShoe}) : super(key: key);
+  AddShoe({Key? key, required this.addNewShoe, required this.updateHandler}) : super(key: key);
 
   final idController = TextEditingController();
   final modelNameController = TextEditingController();
@@ -14,6 +14,7 @@ class AddShoe extends StatelessWidget {
   final priceController = TextEditingController();
 
   final Function addNewShoe;
+  final Function updateHandler;
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +81,8 @@ class AddShoe extends StatelessWidget {
                     modelName: modelNameController.text,
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),
-                    price: double.parse(priceController.text)));
-                    Navigator.of(context).pop();
+                    price: double.parse(priceController.text)), updateHandler);
+                Navigator.of(context).pop();
               },
             )
           ],

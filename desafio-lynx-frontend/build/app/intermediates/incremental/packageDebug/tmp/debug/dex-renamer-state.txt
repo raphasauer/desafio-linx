@@ -1,4 +1,4 @@
-#Wed Oct 06 18:17:33 BRT 2021
+#Wed Oct 06 19:43:19 BRT 2021
 base.0=/home/raphael/Documents/Projetos_Flutter/desafio-lynx/desafio-lynx-frontend/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

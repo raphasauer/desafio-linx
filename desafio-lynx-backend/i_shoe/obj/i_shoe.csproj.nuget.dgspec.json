@@ -1,0 +1,73 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/raphael/Documents/Projetos_Flutter/desafio-lynx-backend/i_shoe/i_shoe.csproj": {}
+  },
+  "projects": {
+    "/home/raphael/Documents/Projetos_Flutter/desafio-lynx-backend/i_shoe/i_shoe.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/raphael/Documents/Projetos_Flutter/desafio-lynx-backend/i_shoe/i_shoe.csproj",
+        "projectName": "i_shoe",
+        "projectPath": "/home/raphael/Documents/Projetos_Flutter/desafio-lynx-backend/i_shoe/i_shoe.csproj",
+        "packagesPath": "/home/raphael/.nuget/packages/",
+        "outputPath": "/home/raphael/Documents/Projetos_Flutter/desafio-lynx-backend/i_shoe/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/raphael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../models/shoe.dart';
 
 class EditShoe extends StatelessWidget {
-  EditShoe({Key? key, required this.editShoe, required this.shoe})
+  EditShoe({Key? key, required this.editShoe, required this.shoe, required this.updateHandler})
       : super(key: key) {
     loadShoe();
   }
@@ -16,6 +16,7 @@ class EditShoe extends StatelessWidget {
   final stockController = TextEditingController();
 
   final Function editShoe;
+  final Function updateHandler;
   final Shoe shoe;
 
   void loadShoe() {
@@ -81,7 +82,7 @@ class EditShoe extends StatelessWidget {
                     modelName: modelNameController.text,
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),
-                    price: double.parse(priceController.text)));
+                    price: double.parse(priceController.text)), updateHandler);
                 Navigator.of(context).pop();
               },
             )

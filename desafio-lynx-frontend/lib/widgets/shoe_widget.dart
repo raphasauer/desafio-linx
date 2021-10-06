@@ -7,8 +7,9 @@ import 'edit_shoe.dart';
 class ShoeWidget extends StatelessWidget {
   final Shoe shoe;
   final Function editingHandler;
+  final Function updateHandler;
 
-  const ShoeWidget(this.shoe, this.editingHandler);
+  const ShoeWidget(this.shoe, this.editingHandler, this.updateHandler);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class ShoeWidget extends StatelessWidget {
                               context: context,
                               builder: (BuildContext context) {
                                 return EditShoe(
-                                    editShoe: editingHandler, shoe: shoe);
+                                    editShoe: editingHandler, shoe: shoe, updateHandler: updateHandler);
                               });
                         },
                       ),

@@ -8,6 +8,7 @@ import 'dart:async';
 
 var _shoesUrl = Uri.http('192.168.0.33:5000', '/api/shoe/');
 
+enum HttpRequestStatus { notDone, done, error }
 
 void main() {
   runApp(const MyApp());

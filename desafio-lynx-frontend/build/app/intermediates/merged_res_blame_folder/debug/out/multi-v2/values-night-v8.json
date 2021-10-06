@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/raphael/Documents/Projetos_Flutter/desafio-lynx/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "/home/raphael/Documents/Projetos_Flutter/desafio-lynx/desafio-lynx-frontend/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/raphael/Documents/Projetos_Flutter/desafio-lynx/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/home/raphael/Documents/Projetos_Flutter/desafio-lynx/desafio-lynx-frontend/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

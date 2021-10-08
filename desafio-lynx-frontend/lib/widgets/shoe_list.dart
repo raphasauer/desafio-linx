@@ -36,8 +36,16 @@ class ShoeList extends StatelessWidget {
                       reloadHandler();
                     }
                   },
-                  background: Container(color: Colors.red),
-                  child: ShoeWidget(snapshot.data![index], updateShoeService, reloadHandler),
+                  background: Container(
+                    child: Card(
+                      color: Colors.red[800],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  child: ShoeWidget(
+                      snapshot.data![index], updateShoeService, reloadHandler),
                 );
               });
         } else if (snapshot.hasError) {
@@ -46,10 +54,8 @@ class ShoeList extends StatelessWidget {
 
         return const Center(
           child: CircularProgressIndicator(),
-          );
+        );
       },
     );
   }
 }
-
-

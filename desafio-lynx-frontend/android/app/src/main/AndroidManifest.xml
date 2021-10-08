@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.i_shoes">
    <application
-        android:label="i_shoes"
-        android:icon="@mipmap/ic_launcher">
+        android:label="iShoes"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

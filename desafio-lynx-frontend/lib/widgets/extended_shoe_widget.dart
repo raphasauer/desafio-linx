@@ -43,10 +43,10 @@ class ExtendedShoeWidget extends StatelessWidget {
                           color: Colors.purple,
                         ),
                       ),
-                      Text('Código Ref. ${shoe.id}',
+                      Text('Código Ref.: ${shoe.id}',
                           style: const TextStyle(
                               color: Colors.purple, fontSize: 16)),
-                      Text('Estoque. ${shoe.stock}',
+                      Text('Estoque: ${shoe.stock}',
                           style: const TextStyle(
                               color: Colors.purple, fontSize: 16)),
                       Text('Tamanho: ${shoe.size}',

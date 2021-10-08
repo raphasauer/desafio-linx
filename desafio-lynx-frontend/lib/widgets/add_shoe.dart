@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import '../models/shoe.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 class AddShoe extends StatelessWidget {
-  AddShoe({Key? key, required this.addNewShoe, required this.updateHandler}) : super(key: key);
+  AddShoe({Key? key, required this.addNewShoe, required this.updateHandler})
+      : super(key: key);
 
   final idController = TextEditingController();
   final modelNameController = TextEditingController();
@@ -12,6 +14,8 @@ class AddShoe extends StatelessWidget {
   final stockController = TextEditingController();
   final sizeController = TextEditingController();
   final priceController = TextEditingController();
+  final priceFormatter =
+      CurrencyTextInputFormatter(decimalDigits: 2, locale: 'pt', symbol: 'R\$');
 
   final Function addNewShoe;
   final Function updateHandler;
@@ -55,19 +59,24 @@ class AddShoe extends StatelessWidget {
               maxLength: 25,
             ),
             TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(
+                  signed: false, decimal: false),
               decoration: InputDecoration(hintText: 'Estoque', counterText: ''),
               controller: stockController,
               maxLength: 3,
             ),
             TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(
+                  signed: false, decimal: false),
               decoration: InputDecoration(hintText: 'Tamanho', counterText: ''),
               controller: sizeController,
               maxLength: 2,
             ),
             TextField(
-              keyboardType: TextInputType.number,
+              inputFormatters: [
+                priceFormatter,
+              ],
+              keyboardType: TextInputType.numberWithOptions(signed: false),
               decoration: InputDecoration(hintText: 'Preço', counterText: ''),
               controller: priceController,
               maxLength: 9,
@@ -75,13 +84,18 @@ class AddShoe extends StatelessWidget {
             ElevatedButton(
               child: Text('Inserir calçado'),
               onPressed: () {
-                addNewShoe(Shoe(
-                    id: int.parse(idController.text),
-                    stock: int.parse(stockController.text),
-                    modelName: modelNameController.text,
-                    brand: brandNameController.text,
-                    size: int.parse(sizeController.text),
-                    price: double.parse(priceController.text)), updateHandler);
+                priceController.text =
+                    priceFormatter.getUnformattedValue().toString();
+                priceController.text = priceController.text.replaceAll(',', '.');
+                addNewShoe(
+                    Shoe(
+                        id: int.parse(idController.text),
+                        stock: int.parse(stockController.text),
+                        modelName: modelNameController.text,
+                        brand: brandNameController.text,
+                        size: int.parse(sizeController.text),
+                        price: double.parse(priceController.text)),
+                    updateHandler);
                 Navigator.of(context).pop();
               },
             )

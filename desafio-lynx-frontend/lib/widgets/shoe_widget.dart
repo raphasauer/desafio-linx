@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import '../models/shoe.dart';
-import 'edit_shoe.dart';
+import 'simple_shoe_widget.dart';
+import 'extended_shoe_widget.dart';
 
-class ShoeWidget extends StatelessWidget {
+class ShoeWidget extends StatefulWidget {
   final Shoe shoe;
   final Function editingHandler;
   final Function updateHandler;
@@ -12,77 +13,32 @@ class ShoeWidget extends StatelessWidget {
   const ShoeWidget(this.shoe, this.editingHandler, this.updateHandler);
 
   @override
+  State<ShoeWidget> createState() => _ShoeWidgetState();
+}
+
+class _ShoeWidgetState extends State<ShoeWidget> {
+  bool isExtended = false;
+
+  void changeView() {
+    setState(() {
+      isExtended = !isExtended;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.all(2.5),
-        height: 130,
-        child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        shoe.modelName,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.purple,
-                        ),
-                      ),
-                      Text('Código Ref. ${shoe.id}',
-                          style: TextStyle(color: Colors.purple)),
-                      Text('Estoque. ${shoe.stock}',
-                          style: TextStyle(color: Colors.purple)),
-                      Text('Tamanho: ${shoe.size}',
-                          style: TextStyle(color: Colors.purple, fontSize: 16)),
-                      Text('R\$ ${shoe.price.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.purple,
-                          )),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: Text(shoe.brand,
-                            style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 16,
-                              color: Colors.orange,
-                            )),
-                      ),
-                      TextButton(
-                        child: Icon(
-                          Icons.edit,
-                        ),
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return EditShoe(
-                                    editShoe: editingHandler, shoe: shoe, updateHandler: updateHandler);
-                              });
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )));
+    if (isExtended) {
+      return ExtendedShoeWidget(
+          changeView: changeView,
+          shoe: widget.shoe,
+          editingHandler: widget.editingHandler,
+          updateHandler: widget.updateHandler);
+    } else {
+      return SimpleShoeWidget(
+          changeView: changeView,
+          shoe: widget.shoe,
+          editingHandler: widget.editingHandler,
+          updateHandler: widget.updateHandler);
+    }
   }
 }

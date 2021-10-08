@@ -1,16 +1,9 @@
-# i_shoes
+# iShoes
 
-A new Flutter project.
+Solução do desafio proposto pela empresa Linx. Desafio: 
 
-## Getting Started
+> Criar uma API em C# com métodos CRUD, utilizando um banco de dados local PostgreSQL com um front end em Flutter (mobile, web ou desktop). A funcionalidade precisa coletar os dados de um produto, neste caso, pense em campo essenciais para um produto de uma Loja de Calçados.
 
-This project is a starting point for a Flutter application.
+A solução desenvolvida foi um aplicativo mobile desenvolvido em Flutter chamado iShoes. Para o backend, foi utilizado um WebServer ASP.NET a base de C# para fazer a API. O banco de dados utilizados foi o PostgreSQL. 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+É possível baixar o APK gerado, porém sem a infraestrutura de apoio o aplicativo exibirá um ícone de sem conexão. 

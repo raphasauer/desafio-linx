@@ -33,13 +33,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Map<int, Shoe> _shoeMap = {};
-
-  void _updateShoe(Shoe updatedShoe) {
-    setState(() {
-      _shoeMap.update(updatedShoe.id, (value) => updatedShoe);
-    });
-  }
 
   void _reloadPage() {
     setState(() {});
@@ -53,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: ShoeList(
-          editingHandler: _updateShoe,
           reloadHandler: _reloadPage),
       floatingActionButton: FloatingActionButton(
           onPressed: () {

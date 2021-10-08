@@ -5,10 +5,9 @@ import '../service/services.dart';
 
 class ShoeList extends StatelessWidget {
   const ShoeList(
-      {Key? key, required this.editingHandler, required this.reloadHandler})
+      {Key? key, required this.reloadHandler})
       : super(key: key);
 
-  final Function editingHandler;
 
   final Function reloadHandler;
 

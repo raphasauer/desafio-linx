@@ -5,11 +5,8 @@ import '../service/services.dart';
 
 class ShoeList extends StatelessWidget {
   const ShoeList(
-      {Key? key,
-      required this.editingHandler,
-      required this.reloadHandler})
+      {Key? key, required this.editingHandler, required this.reloadHandler})
       : super(key: key);
-
 
   final Function editingHandler;
 
@@ -47,7 +44,12 @@ class ShoeList extends StatelessWidget {
                 );
               });
         } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
+          return const Center(
+              child: Icon(
+            Icons.cloud_off,
+            size: 100,
+            color: Colors.purple,
+          ));
         }
 
         return const Center(

@@ -1,0 +1,16 @@
+
+GET https://localhost:5001/api/shoe/
+
+POST https://localhost:5001/api/shoe/
+Content-Type: application/json
+
+{
+    "id": 123,
+    "modelname": "Camping boots",
+    "brand": "Outsider",
+    "size": 40,
+    "price": 299.99,
+    "stock": 240
+}
+
+DELETE https://localhost:5001/api/shoe/123

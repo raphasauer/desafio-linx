@@ -1,17 +1,31 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import '../models/shoe.dart';
 
-class AddShoe extends StatelessWidget {
-  AddShoe({Key? key, required this.addNewShoe}) : super(key: key);
+class EditShoe extends StatelessWidget {
+  EditShoe({Key? key, required this.editShoe, required this.shoe, required this.updateHandler})
+      : super(key: key) {
+    loadShoe();
+  }
 
   final modelNameController = TextEditingController();
   final brandNameController = TextEditingController();
   final sizeController = TextEditingController();
   final priceController = TextEditingController();
+  final stockController = TextEditingController();
 
-  final Function addNewShoe;
+  final Function editShoe;
+  final Function updateHandler;
+  final Shoe shoe;
+
+  void loadShoe() {
+    modelNameController.text = shoe.modelName;
+    brandNameController.text = shoe.brand;
+    sizeController.text = shoe.size.toString();
+    priceController.text = shoe.price.toString();
+    stockController.text = shoe.stock.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +34,9 @@ class AddShoe extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       scrollable: true,
+      title: Text('Editar calçado', textAlign: TextAlign.center),
       titleTextStyle: TextStyle(
           color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
-      title: Text(
-        'Adicionar calçado',
-        textAlign: TextAlign.center,
-      ),
       actionsAlignment: MainAxisAlignment.center,
       content: SizedBox(
         height: 300,
@@ -33,14 +44,22 @@ class AddShoe extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextField(
-              decoration: InputDecoration(hintText: "Nome do produto", counterText: ''),
+              decoration:
+                  InputDecoration(hintText: "Nome do produto", counterText: ''),
               controller: modelNameController,
               maxLength: 25,
             ),
             TextField(
-              decoration: InputDecoration(hintText: 'Marca do produto', counterText: ''),
+              decoration: InputDecoration(
+                  hintText: 'Marca do produto', counterText: ''),
               controller: brandNameController,
               maxLength: 25,
+            ),
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(hintText: 'Estoque', counterText: ''),
+              controller: stockController,
+              maxLength: 3,
             ),
             TextField(
               keyboardType: TextInputType.number,
@@ -55,18 +74,16 @@ class AddShoe extends StatelessWidget {
               maxLength: 9,
             ),
             ElevatedButton(
-              child: Text('Inserir calçado'),
+              child: Text('Editar calçado'),
               onPressed: () {
-                addNewShoe(Shoe(
-                    id: DateTime.now().millisecondsSinceEpoch,
+                editShoe(Shoe(
+                    id: shoe.id,
+                    stock: int.parse(stockController.text),
                     modelName: modelNameController.text,
                     brand: brandNameController.text,
                     size: int.parse(sizeController.text),
-                    price: double.parse(priceController.text)));
-                modelNameController.clear();
-                brandNameController.clear();
-                sizeController.clear();
-                priceController.clear();
+                    price: double.parse(priceController.text)), updateHandler);
+                Navigator.of(context).pop();
               },
             )
           ],

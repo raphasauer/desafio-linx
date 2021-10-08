@@ -45,7 +45,7 @@ class ShoeWidget extends StatelessWidget {
                           style: TextStyle(color: Colors.purple)),
                       Text('Tamanho: ${shoe.size}',
                           style: TextStyle(color: Colors.purple, fontSize: 16)),
-                      Text('R\$ ${shoe.price.toStringAsFixed(2)}',
+                      Text('R\$ ${shoe.price.toStringAsFixed(2).replaceAll('.', ',')}',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

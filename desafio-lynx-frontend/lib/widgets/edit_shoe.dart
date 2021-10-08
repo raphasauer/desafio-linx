@@ -2,9 +2,14 @@
 
 import 'package:flutter/material.dart';
 import '../models/shoe.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 class EditShoe extends StatelessWidget {
-  EditShoe({Key? key, required this.editShoe, required this.shoe, required this.updateHandler})
+  EditShoe(
+      {Key? key,
+      required this.editShoe,
+      required this.shoe,
+      required this.updateHandler})
       : super(key: key) {
     loadShoe();
   }
@@ -14,6 +19,8 @@ class EditShoe extends StatelessWidget {
   final sizeController = TextEditingController();
   final priceController = TextEditingController();
   final stockController = TextEditingController();
+  final priceFormatter =
+      CurrencyTextInputFormatter(decimalDigits: 2, locale: 'pt', symbol: 'R\$');
 
   final Function editShoe;
   final Function updateHandler;
@@ -56,33 +63,43 @@ class EditShoe extends StatelessWidget {
               maxLength: 25,
             ),
             TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(
+                  signed: false, decimal: false),
               decoration: InputDecoration(hintText: 'Estoque', counterText: ''),
               controller: stockController,
               maxLength: 3,
             ),
             TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.numberWithOptions(
+                  signed: false, decimal: false),
               decoration: InputDecoration(hintText: 'Tamanho', counterText: ''),
               controller: sizeController,
               maxLength: 2,
             ),
             TextField(
+              inputFormatters: [
+                priceFormatter,
+              ],
               keyboardType: TextInputType.number,
               decoration: InputDecoration(hintText: 'Preço', counterText: ''),
               controller: priceController,
-              maxLength: 9,
+              maxLength: 13,
             ),
             ElevatedButton(
               child: Text('Editar calçado'),
               onPressed: () {
-                editShoe(Shoe(
-                    id: shoe.id,
-                    stock: int.parse(stockController.text),
-                    modelName: modelNameController.text,
-                    brand: brandNameController.text,
-                    size: int.parse(sizeController.text),
-                    price: double.parse(priceController.text)), updateHandler);
+                priceController.text = priceFormatter.getUnformattedValue().toString();
+                priceController.text = priceController.text.replaceAll(',', '.');
+
+                editShoe(
+                    Shoe(
+                        id: shoe.id,
+                        stock: int.parse(stockController.text),
+                        modelName: modelNameController.text,
+                        brand: brandNameController.text,
+                        size: int.parse(sizeController.text),
+                        price: double.parse(priceController.text)),
+                    updateHandler);
                 Navigator.of(context).pop();
               },
             )

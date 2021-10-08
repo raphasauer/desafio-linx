@@ -30,7 +30,7 @@ class EditShoe extends StatelessWidget {
     modelNameController.text = shoe.modelName;
     brandNameController.text = shoe.brand;
     sizeController.text = shoe.size.toString();
-    priceController.text = shoe.price.toString();
+    priceController.text = priceFormatter.format(shoe.price.toString()).toString();
     stockController.text = shoe.stock.toString();
   }
 
@@ -88,8 +88,10 @@ class EditShoe extends StatelessWidget {
             ElevatedButton(
               child: Text('Editar calçado'),
               onPressed: () {
-                priceController.text = priceFormatter.getUnformattedValue().toString();
-                priceController.text = priceController.text.replaceAll(',', '.');
+                priceController.text =
+                    priceFormatter.getUnformattedValue().toString();
+                priceController.text =
+                    priceController.text.replaceAll(',', '.');
 
                 editShoe(
                     Shoe(

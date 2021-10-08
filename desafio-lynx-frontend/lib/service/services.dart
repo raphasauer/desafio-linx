@@ -6,6 +6,9 @@ import '../models/shoe.dart';
 //IP do server local
 var _shoesUrl = Uri.http('192.168.0.33:5000', '/api/shoe/');
 
+//Lista dos IDs utilizados
+List<int> _takenIds = [];
+
 enum HttpRequestStatus { notDone, done, error }
 
 Future<List<Shoe>> getAll() async {
@@ -17,6 +20,7 @@ Future<List<Shoe>> getAll() async {
 
 List<Shoe> createShoeList(List data) {
   List<Shoe> list = [];
+  _takenIds.clear();
 
   for (int i = 0; i < data.length; i++) {
     int id = data[i]["id"];
@@ -32,6 +36,7 @@ List<Shoe> createShoeList(List data) {
         stock: stock,
         size: size,
         price: price);
+    _takenIds.add(id);
     list.add(newShoe);
   }
 
@@ -64,7 +69,6 @@ Future deleteShoe(int id) async {
   final url = Uri.http('192.168.0.33:5000', '/api/shoe/$id');
   final response = await http.delete(url);
   if (response.statusCode == 200) {
-    print(response.body.toString());
     httpRequestStatus = HttpRequestStatus.done;
   } else {
     httpRequestStatus = HttpRequestStatus.error;
@@ -105,4 +109,8 @@ Future createShoe(Shoe newShoe) async {
   }
 
   return httpRequestStatus;
+}
+
+bool isIdTaken(int id) {
+  return _takenIds.contains(id);
 }

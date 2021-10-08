@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../models/shoe.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import '../service/services.dart';
 
 class AddShoe extends StatelessWidget {
   AddShoe({Key? key, required this.addNewShoe, required this.updateHandler})
@@ -86,17 +87,23 @@ class AddShoe extends StatelessWidget {
               onPressed: () {
                 priceController.text =
                     priceFormatter.getUnformattedValue().toString();
-                priceController.text = priceController.text.replaceAll(',', '.');
-                addNewShoe(
-                    Shoe(
-                        id: int.parse(idController.text),
-                        stock: int.parse(stockController.text),
-                        modelName: modelNameController.text,
-                        brand: brandNameController.text,
-                        size: int.parse(sizeController.text),
-                        price: double.parse(priceController.text)),
-                    updateHandler);
-                Navigator.of(context).pop();
+                priceController.text =
+                    priceController.text.replaceAll(',', '.');
+                if (!isIdTaken(int.parse(idController.text))) {
+                  addNewShoe(
+                      Shoe(
+                          id: int.parse(idController.text),
+                          stock: int.parse(stockController.text),
+                          modelName: modelNameController.text,
+                          brand: brandNameController.text,
+                          size: int.parse(sizeController.text),
+                          price: double.parse(priceController.text)),
+                      updateHandler);
+                  Navigator.of(context).pop();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Código de referência já cadastrado'), backgroundColor: Colors.red[800],));
+                  Navigator.of(context).pop();
+                }
               },
             )
           ],

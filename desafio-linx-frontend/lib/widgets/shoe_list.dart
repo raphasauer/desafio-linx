@@ -30,12 +30,10 @@ class ShoeList extends StatelessWidget {
                       reloadHandler();
                     }
                   },
-                  background: Container(
-                    child: Card(
-                      color: Colors.red[800],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                  background: Card(
+                    color: Colors.red[800],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: ShoeWidget(

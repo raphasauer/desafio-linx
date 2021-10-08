@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import '../models/shoe.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -41,8 +39,8 @@ class EditShoe extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       scrollable: true,
-      title: Text('Editar calçado', textAlign: TextAlign.center),
-      titleTextStyle: TextStyle(
+      title: const Text('Editar calçado', textAlign: TextAlign.center),
+      titleTextStyle: const TextStyle(
           color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
       actionsAlignment: MainAxisAlignment.center,
       content: SizedBox(
@@ -52,27 +50,27 @@ class EditShoe extends StatelessWidget {
           children: [
             TextField(
               decoration:
-                  InputDecoration(hintText: "Nome do produto", counterText: ''),
+                  const InputDecoration(hintText: "Nome do produto", counterText: ''),
               controller: modelNameController,
               maxLength: 25,
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: 'Marca do produto', counterText: ''),
               controller: brandNameController,
               maxLength: 25,
             ),
             TextField(
-              keyboardType: TextInputType.numberWithOptions(
+              keyboardType: const TextInputType.numberWithOptions(
                   signed: false, decimal: false),
-              decoration: InputDecoration(hintText: 'Estoque', counterText: ''),
+              decoration: const InputDecoration(hintText: 'Estoque', counterText: ''),
               controller: stockController,
               maxLength: 3,
             ),
             TextField(
-              keyboardType: TextInputType.numberWithOptions(
+              keyboardType: const TextInputType.numberWithOptions(
                   signed: false, decimal: false),
-              decoration: InputDecoration(hintText: 'Tamanho', counterText: ''),
+              decoration: const InputDecoration(hintText: 'Tamanho', counterText: ''),
               controller: sizeController,
               maxLength: 2,
             ),
@@ -81,12 +79,12 @@ class EditShoe extends StatelessWidget {
                 priceFormatter,
               ],
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(hintText: 'Preço', counterText: ''),
+              decoration: const InputDecoration(hintText: 'Preço', counterText: ''),
               controller: priceController,
               maxLength: 13,
             ),
             ElevatedButton(
-              child: Text('Editar calçado'),
+              child: const Text('Editar calçado'),
               onPressed: () {
                 priceController.text =
                     priceFormatter.getUnformattedValue().toString();

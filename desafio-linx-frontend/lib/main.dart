@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './widgets/shoe_list.dart';
 import './widgets/add_shoe.dart';
-import './models/shoe.dart';
 import './service/services.dart';
 
 enum HttpRequestStatus { notDone, done, error }

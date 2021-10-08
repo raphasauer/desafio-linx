@@ -56,7 +56,6 @@ Future updateShoe(Shoe updatedShoe) async {
         'price': updatedShoe.price
       }));
   if (response.statusCode == 200) {
-    print(response.body.toString());
     httpRequestStatus = HttpRequestStatus.done;
   } else {
     httpRequestStatus = HttpRequestStatus.done;
